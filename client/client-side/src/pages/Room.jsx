@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 const Room = () => {
     const [email,setEmail]=useState("");
     const [Room,setRoom]=useState('');
+    // const [count,setCount]=useState(0);
 
     const socket=useSocket();
     const nav=useNavigate();
@@ -19,23 +20,16 @@ const Room = () => {
         socket.emit("JOIN",{email,Room})
     }
 
-    // const handleRoom=(data)=>{
-    //     // const data=e.data;
-    //     (data) => {
-    //         nav(`/room/${room}`);
-    //       },
-
-    //     console.log("hello");
-    // }
     const handleRoom = (data) => {
         const { email, Room } = data;
         if(email && Room){
             nav('/room')
+            // setCount(count+1);
         }
         else{
             nav('/')
         }
-        // nav(`/room/${Room}`);
+
         console.log("hello");
     }
 

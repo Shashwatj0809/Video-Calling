@@ -19,11 +19,25 @@ io.on("connection", (socket) => {
         const { email, room } = data;
         Email.set(email, socket.id);
         Socket.set(socket.id, email);
-        io.to(room).emit("JOIN", { email, id: socket.id });
+        io.to(room).emit("JOINED", { email, id: socket.id });
         socket.join(room);
         io.to(socket.id).emit("JOIN", data);
     })
+
+
+    socket.on("make-call",({to,sendoffer})=>{
+        io.to(to).emit("recieve-call",{from:socket.id,sendoffer})
+    })
+
+    socket.on("accept-call",({to,ans})=>{
+        io.to(to).emit("accepted",{from:socket.id,ans})
+    })
+
 });
+
+// socket.on("make-call",({to,sendoffer})=>{
+//     io.to(to).emit("recieve-call",{from:socket.id,sendoffer})
+// })
 
 io.engine.on("headers", (headers, request) => {
     headers["Access-Control-Allow-Origin"] = "http://localhost:5173";

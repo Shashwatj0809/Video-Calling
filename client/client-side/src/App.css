@@ -54,3 +54,14 @@ button {
   border-radius: 4px;
   font-size: 1rem;
 }
+
+.VideoConference{
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #e9eade;
+
+}
+.callButton{
+  width: 50px;
+}
